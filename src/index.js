@@ -21,12 +21,6 @@ class App extends React.Component {
     });
   };
 
-  handleChangeTitle = () => {
-    this.setstate2({
-      title: "you change the title by yourself",
-    });
-  };
-
   render() {
     return (
       <div className="main">
