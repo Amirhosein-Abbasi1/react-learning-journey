@@ -1,49 +1,88 @@
 import React from "react";
 
+var interval;
+
 class Timer extends React.Component {
   constructor() {
     super();
-
+    
     this.state = {
-      countdown: 0,
+      hour: 0,
+      minute: 0,
+      second: 0,
+      isStart: false,
     };
   }
-
+  
   startTimer = () => {
-    clearInterval(this.intervalk);
-
-    this.setState({
-      countdown: Number(this.props.startValue),
-    });
-
-    this.intervalk = setInterval(() => {
-      this.setState((prevState) => {
-        if (prevState.countdown <= 1) {
-          clearInterval(this.intervalk);
-          return { countdown: 0 };
-        }
-
-        return {
-          countdown: prevState.countdown - 1,
-        };
+    if (this.state.isStart === false) {
+      this.setState({
+        isStart: true
       });
-    }, 1000);
+
+      interval = setInterval( () => {
+        this.setState({
+          second: this.state.second + 1
+        })
+
+        if (this.state.second === 60) {
+        this.setState({
+          second: 0,
+          minute: this.state.minute + 1
+        });
+      }
+
+      if (this.state.minute === 60) {
+        this.setState({
+          minute: 0,
+          hour: this.state.hour + 1
+        });
+      }
+      }, 1000); 
+
+    }
   };
 
-  componentWillUnmount() {
-    clearInterval(this.intervalk);
-  }
+  stopTimer = () => {
+    this.setState({
+      isStart: false
+    })
+    clearInterval(interval);
+  };
+
+  resetTimer = () => {
+    this.stopTimer();
+    this.setState({
+      hour: 0,
+      minute: 0,
+      second: 0,
+    })
+  };
 
   render() {
+    let h = this.state.hour;
+    let m = this.state.minute;
+    let s = this.state.second;
+
     return (
       <>
-      <br/><br/>
-        <button onClick={this.startTimer} type="button">
-          START
-        </button>
-        <br/><br/>
-
-        <h1>{this.state.countdown}</h1>
+        <h1 className="timer">
+          {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
+        </h1>
+        <br />
+        <div className="button-box">
+          <span className="action-btn stop-btn" onClick={this.stopTimer}>
+            <p id="icon-btn">⏸</p>
+            <p id="name-btn">Stop</p>
+          </span>
+          <span className="action-btn start-btn" onClick={this.startTimer}>
+            <p id="start-icon-btn">▶</p>
+          </span>
+          <span className="action-btn reset-btn" onClick={this.resetTimer}>
+            <p id="icon-btn">⏹</p>
+            <p id="name-btn">Reset</p>
+          </span>
+        </div>
       </>
     );
   }

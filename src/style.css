@@ -1,13 +1,68 @@
 body {
-    background-color: antiquewhite;
+  background-color: rgb(9, 13, 22);
+  font-family: sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
 }
 .title {
-    display: flex;
-    color: green;
+  display: flex;
+  color: white;
+  font-size: 1.5rem;
+  margin-top: -2rem;
 }
-.main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 3rem;
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14rem;
+  height: 16rem;
+  border: 5px solid rgb(107, 77, 247);
+  color: white;
+  font-size: 2.2rem;
+  border-radius: 50%;
+}
+
+.button-box {
+  display: flex;
+  gap: 1.2rem;
+}
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 1.2rem;
+  padding-bottom: -1rem;
+  color: rgb(196, 199, 209);
+  border: 1px solid rgb(196, 199, 209);
+  background-color: rgb(31, 35, 51);
+  border-radius: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+.start-btn {
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: white;
+  background: linear-gradient(
+    128deg,
+    rgba(200, 86, 245, 1) 0%,
+    rgba(119, 74, 224, 1) 25%,
+    rgba(54, 80, 199, 1) 100%
+  );
+}
+
+#icon-btn {
+  margin-top: 0rem;
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+#name-btn {
+  margin-top: -0.6rem;
+  font-size: 0.9rem;
 }

@@ -4,7 +4,7 @@ import "./style.css";
 
 class Title extends React.Component {
   render() {
-    return <h1 className="title">{this.props.title}</h1>;
+    return <p className="title">{this.props.title}</p>;
   }
 }
 
