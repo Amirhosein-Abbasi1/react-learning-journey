@@ -32,12 +32,12 @@ body {
   gap: 1.2rem;
 }
 .action-btn {
+  width: 4.5rem;
+  height: 3.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0rem 1.2rem;
-  padding-bottom: -1rem;
   color: rgb(196, 199, 209);
   border: 1px solid rgb(196, 199, 209);
   background-color: rgb(31, 35, 51);
@@ -46,6 +46,7 @@ body {
   user-select: none;
 }
 .start-btn {
+  width: 3rem;
   border-radius: 50%;
   font-size: 1.5rem;
   color: white;
@@ -56,13 +57,12 @@ body {
     rgba(54, 80, 199, 1) 100%
   );
 }
-
 #icon-btn {
-  margin-top: 0rem;
+  margin-top: 0.7rem;
   font-size: 1.1rem;
   font-weight: bolder;
 }
 #name-btn {
-  margin-top: -0.6rem;
+  margin-top: -1rem;
   font-size: 0.9rem;
-}
+} 

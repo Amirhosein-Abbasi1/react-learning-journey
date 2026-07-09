@@ -25,14 +25,14 @@ class Timer extends React.Component {
           second: this.state.second + 1
         })
 
-        if (this.state.second === 60) {
+        if (this.state.second === 59) {
         this.setState({
           second: 0,
           minute: this.state.minute + 1
         });
       }
 
-      if (this.state.minute === 60) {
+      if (this.state.minute === 59) {
         this.setState({
           minute: 0,
           hour: this.state.hour + 1
@@ -71,17 +71,17 @@ class Timer extends React.Component {
         </h1>
         <br />
         <div className="button-box">
-          <span className="action-btn stop-btn" onClick={this.stopTimer}>
+          <button className="action-btn stop-btn" onClick={this.stopTimer}>
             <p id="icon-btn">⏸</p>
             <p id="name-btn">Stop</p>
-          </span>
-          <span className="action-btn start-btn" onClick={this.startTimer}>
+          </button>
+          <button className="action-btn start-btn" onClick={this.startTimer}>
             <p id="start-icon-btn">▶</p>
-          </span>
-          <span className="action-btn reset-btn" onClick={this.resetTimer}>
+          </button>
+          <button className="action-btn reset-btn" onClick={this.resetTimer}>
             <p id="icon-btn">⏹</p>
             <p id="name-btn">Reset</p>
-          </span>
+          </button>
         </div>
       </>
     );
