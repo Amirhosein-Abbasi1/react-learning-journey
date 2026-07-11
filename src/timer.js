@@ -5,48 +5,55 @@ var interval;
 class Timer extends React.Component {
   constructor() {
     super();
-    
+
     this.state = {
       hour: 0,
       minute: 0,
       second: 0,
+      millisecond: 0,
       isStart: false,
     };
   }
-  
+
   startTimer = () => {
     if (this.state.isStart === false) {
       this.setState({
-        isStart: true
+        isStart: true,
       });
 
-      interval = setInterval( () => {
+      interval = setInterval(() => {
         this.setState({
-          second: this.state.second + 1
-        })
+          millisecond: this.state.millisecond + 1,
+        });
+
+        if (this.state.millisecond === 99) {
+          this.setState({
+            millisecond: 0,
+            second: this.state.second + 1,
+          });
+        }
 
         if (this.state.second === 59) {
-        this.setState({
-          second: 0,
-          minute: this.state.minute + 1
-        });
-      }
+          this.setState({
+            second: 0,
+            minute: this.state.minute + 1,
+          });
+        }
 
-      if (this.state.minute === 59) {
-        this.setState({
-          minute: 0,
-          hour: this.state.hour + 1
-        });
-      }
-      }, 1000); 
-
+        if (this.state.minute === 59) {
+          this.setState({
+            minute: 0,
+            hour: this.state.hour + 1,
+          });
+        }
+      }, 10);
     }
   };
 
   stopTimer = () => {
     this.setState({
-      isStart: false
-    })
+      isStart: false,
+    });
     clearInterval(interval);
   };
 
@@ -56,19 +63,26 @@ class Timer extends React.Component {
       hour: 0,
       minute: 0,
       second: 0,
-    })
+      millisecond: 0,
+    });
   };
 
   render() {
     let h = this.state.hour;
     let m = this.state.minute;
     let s = this.state.second;
+    let milli = this.state.millisecond;
 
     return (
       <>
-        <h1 className="timer">
-          {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
-        </h1>
+        <div className="timer">
+          <p className="timer-numbers">
+            {`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s} : `}
+          </p>
+          <p className="timer-milli">
+            {`${milli > 9 ? milli : "0" + milli}`}
+          </p>
+        </div>
         <br />
         <div className="button-box">
           <button className="action-btn stop-btn" onClick={this.stopTimer}>
