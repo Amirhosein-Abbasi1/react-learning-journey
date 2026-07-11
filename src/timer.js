@@ -97,6 +97,7 @@ class Timer extends React.Component {
             <p id="name-btn">Reset</p>
           </button>
         </div>
+        <button className="change-title-btn" type="button" onClick={this.props.handleSetTitle}>Change the Title</button>
       </>
     );
   }
