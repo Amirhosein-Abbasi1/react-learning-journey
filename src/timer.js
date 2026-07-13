@@ -76,10 +76,16 @@ class Timer extends React.Component {
     return (
       <>
         <div className="timer">
-          <p className="timer-numbers">
+          <p
+            className="timer-numbers"
+            style={{ color: this.props.isLight ? "black" : "white" }}
+          >
             {`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s} : `}
           </p>
-          <p className="timer-milli">
+          <p
+            className="timer-milli"
+            style={{ color: this.props.isLight ? "black" : "white" }}
+          >
             {`${milli > 9 ? milli : "0" + milli}`}
           </p>
         </div>
@@ -97,7 +103,13 @@ class Timer extends React.Component {
             <p id="name-btn">Reset</p>
           </button>
         </div>
-        <button className="change-title-btn" type="button" onClick={this.props.handleSetTitle}>Change the Title</button>
+        <button
+          className="change-title-btn"
+          type="button"
+          onClick={this.props.handleSetIsLight}
+        >
+          {this.props.isLight ? "Dark background" : "Light background"}
+        </button>
       </>
     );
   }

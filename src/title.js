@@ -4,7 +4,14 @@ import "./style.css";
 
 class Title extends React.Component {
   render() {
-    return <p className="title">{this.props.title}</p>;
+    return (
+      <p
+        className="title"
+        style={{ color: this.props.isLight ? "black" : "white" }}
+      >
+        {this.props.title}
+      </p>
+    );
   }
 }
 
