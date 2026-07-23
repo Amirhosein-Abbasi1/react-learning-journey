@@ -57,6 +57,14 @@ class Timer extends React.Component {
     clearInterval(interval);
   };
 
+  toggleTimer = () => {
+    if (this.state.isStart) {
+      this.stopTimer();
+    } else {
+      this.startTimer();
+    }
+  };
+
   resetTimer = () => {
     this.stopTimer();
     this.setState({
@@ -91,12 +99,20 @@ class Timer extends React.Component {
         </div>
         <br />
         <div className="button-box">
-          <button className="action-btn stop-btn" onClick={this.stopTimer}>
-            <p id="icon-btn">⏸</p>
-            <p id="name-btn">Stop</p>
+          <button className="action-btn reset-btn">
+            <p id="icon-btn">🔘</p>
+            <p id="name-btn">Lap</p>
           </button>
-          <button className="action-btn start-btn" onClick={this.startTimer}>
-            <p id="start-icon-btn">▶</p>
+          <button className="action-btn start-btn" onClick={this.toggleTimer}>
+            {this.state.isStart ? (
+              <>
+                <p id="icon-btn">⏸</p>
+              </>
+            ) : (
+              <>
+                <p id="start-icon-btn">▶</p>
+              </>
+            )}
           </button>
           <button className="action-btn reset-btn" onClick={this.resetTimer}>
             <p id="icon-btn">⏹</p>
@@ -104,7 +120,7 @@ class Timer extends React.Component {
           </button>
         </div>
         <button
-          className="change-title-btn"
+          className="action-btn change-title-btn"
           type="button"
           onClick={this.props.handleSetIsLight}
         >
