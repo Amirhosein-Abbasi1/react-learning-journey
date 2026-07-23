@@ -1,4 +1,5 @@
 import React from "react";
+import TimeList from "./timeList";
 
 var interval;
 
@@ -73,6 +74,14 @@ class Timer extends React.Component {
       second: 0,
       millisecond: 0,
     });
+    this.props.setTimeArr([]);
+  };
+  handleSaveTimer = () => {
+    let h = this.state.hour;
+    let m = this.state.minute;
+    let s = this.state.second;
+    let newTime = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+    this.props.setTimeArr([...this.props.timeArr, newTime]);
   };
 
   render() {
@@ -99,18 +108,24 @@ class Timer extends React.Component {
         </div>
         <br />
         <div className="button-box">
-          <button className="action-btn reset-btn">
+          <button
+            className="action-btn reset-btn"
+            onClick={this.handleSaveTimer}
+          >
             <p id="icon-btn">🔘</p>
             <p id="name-btn">Lap</p>
           </button>
-          <button className="action-btn start-btn" onClick={this.toggleTimer}>
+          <button
+            className="action-btn start-stop-btn"
+            onClick={this.toggleTimer}
+          >
             {this.state.isStart ? (
               <>
-                <p id="icon-btn">⏸</p>
+                <p className="stop-btn">⏸</p>
               </>
             ) : (
               <>
-                <p id="start-icon-btn">▶</p>
+                <p>▶</p>
               </>
             )}
           </button>
@@ -126,6 +141,7 @@ class Timer extends React.Component {
         >
           {this.props.isLight ? "Dark background" : "Light background"}
         </button>
+        <TimeList isLight={this.props.isLight}>{this.props.timeArr}</TimeList>
       </>
     );
   }

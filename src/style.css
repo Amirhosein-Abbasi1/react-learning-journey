@@ -58,7 +58,7 @@ body {
 .action-btn:hover {
   transform: scale(1.05);
 }
-.start-btn {
+.start-stop-btn {
   width: 3rem;
   border-radius: 50%;
   font-size: 1.5rem;
@@ -69,6 +69,10 @@ body {
     rgba(119, 74, 224, 1) 25%,
     rgba(54, 80, 199, 1) 100%
   );
+}
+.stop-btn {
+  font-size: 2rem;
+  margin-top: 1.4rem;
 }
 #icon-btn {
   margin-top: 0.7rem;
