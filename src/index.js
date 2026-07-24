@@ -4,6 +4,7 @@ import "./style.css";
 
 import Title from "./title";
 import Timer from "./timer";
+import context from "./context";
 
 const App = () => {
   const [title] = useState("Stopwatch");
@@ -15,17 +16,20 @@ const App = () => {
   };
 
   return (
-    <body style={{ background: isLight ? "#f1f1f1" : "#090d16" }}>
-      <div className="main">
-        <Title title={title} isLight={isLight} />
-        <Timer
-          isLight={isLight}
-          handleSetIsLight={handleSetIsLight}
-          timeArr={timeArr}
-          setTimeArr={setTimeArr}
-        />
-      </div>
-    </body>
+    <context.Provider
+      value={{
+        timeArr: timeArr,
+        setTimeArr: setTimeArr,
+        isLight: isLight,
+      }}
+    >
+      <body style={{ background: isLight ? "#f1f1f1" : "#090d16" }}>
+        <div className="main">
+          <Title title={title} isLight={isLight} />
+          <Timer handleSetIsLight={handleSetIsLight} />
+        </div>
+      </body>
+    </context.Provider>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import TimeList from "./timeList";
+import context from "./context";
 
 var interval;
 
@@ -15,6 +16,8 @@ class Timer extends React.Component {
       isStart: false,
     };
   }
+
+  static contextType = context;
 
   startTimer = () => {
     if (this.state.isStart === false) {
@@ -74,14 +77,14 @@ class Timer extends React.Component {
       second: 0,
       millisecond: 0,
     });
-    this.props.setTimeArr([]);
+    this.context.setTimeArr([]);
   };
   handleSaveTimer = () => {
     let h = this.state.hour;
     let m = this.state.minute;
     let s = this.state.second;
     let newTime = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
-    this.props.setTimeArr([...this.props.timeArr, newTime]);
+    this.context.setTimeArr([...this.context.timeArr, newTime]);
   };
 
   render() {
@@ -95,13 +98,13 @@ class Timer extends React.Component {
         <div className="timer">
           <p
             className="timer-numbers"
-            style={{ color: this.props.isLight ? "black" : "white" }}
+            style={{ color: this.context.isLight ? "black" : "white" }}
           >
             {`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s} : `}
           </p>
           <p
             className="timer-milli"
-            style={{ color: this.props.isLight ? "black" : "white" }}
+            style={{ color: this.context.isLight ? "black" : "white" }}
           >
             {`${milli > 9 ? milli : "0" + milli}`}
           </p>
@@ -139,9 +142,10 @@ class Timer extends React.Component {
           type="button"
           onClick={this.props.handleSetIsLight}
         >
-          {this.props.isLight ? "Dark background" : "Light background"}
+          {this.context.isLight ? "Dark background" : "Light background"}
         </button>
-        <TimeList isLight={this.props.isLight}>{this.props.timeArr}</TimeList>
+
+        <TimeList />
       </>
     );
   }
