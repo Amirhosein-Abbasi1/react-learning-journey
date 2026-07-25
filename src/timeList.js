@@ -10,7 +10,18 @@ const TimeList = (props) => {
       style={{ color: usingContext.isLight ? "black" : "white" }}
     >
       {usingContext.timeArr.map((c, index) => {
-        return <Item key={index}>{c}</Item>;
+        return (
+          <Item
+            key={index}
+            deleteItem={() => {
+              usingContext.setTimeArr(
+                usingContext.timeArr.filter((item, i) => i !== index),
+              );
+            }}
+          >
+            {c}
+          </Item>
+        );
       })}
     </div>
   );

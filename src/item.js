@@ -1,5 +1,5 @@
 const Item = (props) => {
-  return <div>{props.children}</div>;
+  return <div onClick={props.deleteItem}>{props.children}</div>;
 };
 
 export default Item;
