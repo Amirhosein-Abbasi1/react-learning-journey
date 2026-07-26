@@ -80,10 +80,7 @@ class Timer extends React.Component {
     this.context.setTimeArr([]);
   };
   handleSaveTimer = () => {
-    let h = this.state.hour;
-    let m = this.state.minute;
-    let s = this.state.second;
-    let newTime = `${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`;
+    let newTime = document.querySelector(".timer-numbers").innerHTML;
     this.context.setTimeArr([...this.context.timeArr, newTime]);
   };
 
@@ -100,13 +97,13 @@ class Timer extends React.Component {
             className="timer-numbers"
             style={{ color: this.context.isLight ? "black" : "white" }}
           >
-            {`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s} . `}
+            {`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`}
           </p>
           <p
             className="timer-milli"
             style={{ color: this.context.isLight ? "black" : "white" }}
           >
-            {`${milli > 9 ? milli : "0" + milli}`}
+            {` . ${milli > 9 ? milli : "0" + milli}`}
           </p>
         </div>
         <br />
